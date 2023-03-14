@@ -1,0 +1,32 @@
+directive @goField(forceResolver: Boolean, name: String) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @goModel(model: String, models: [String!]) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
+
+scalar Cursor
+scalar Time
+
+interface Node @key(fields: "id") @goModel(model: "github.com/tapestrylabs/users/api/ent.Noder") {
+  id: ID!
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: Cursor
+  endCursor: Cursor
+}
+
+type Query {
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+}
+
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.3",
+    import: ["@key"],
+  )

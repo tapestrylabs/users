@@ -1,0 +1,48 @@
+type User implements Node @key(fields: "id") {
+  id: ID!
+  email: String!
+  firstRun: Boolean!
+  createdAt: Time!
+  updatedAt: Time!
+}
+
+type UserConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [UserEdge]
+}
+
+type UserEdge {
+  node: User
+  cursor: Cursor!
+}
+
+enum UserOrderField {
+  CREATED_AT
+  UPDATED_AT
+  EMAIL
+}
+
+input UserOrder {
+  direction: OrderDirection! = ASC
+  field: UserOrderField!
+}
+
+extend type Query {
+  users(after: Cursor, first: Int, before: Cursor, last: Int, orderBy: UserOrder, where: UserWhereInput): UserConnection
+}
+
+input RequestLoginCode {
+  email: String!
+}
+
+input ValidateLoginCode {
+  code: String!
+}
+
+extend type Mutation {
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  requestLoginCode(input: RequestLoginCode!): String!
+  validateLoginCode(input: ValidateLoginCode!): String!
+}
