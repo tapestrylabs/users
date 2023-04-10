@@ -2,7 +2,10 @@ on: [push]
 
 jobs:
   test_job:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - uses: dfalgout/test-fabric-gh@v0.1.1-alpha
+      - uses: dfalgout/test-fabric-gh@v0.1.2-test
