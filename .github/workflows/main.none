@@ -1,0 +1,18 @@
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   service_a:
+#     runs-on: ubuntu-latest
+#     name: Deploy fabric project
+#     # permissions:
+#     #   contents: 'read'
+#     #   id-token: 'write'
+#     steps:
+#       - uses: 'actions/checkout@v3'
+#       # Run tests here
+#       - uses: dfalgout/test-fabric-gh@v0.1.11-test
+#         with:
+#           projectToken: ${{ secrets.PROJECT_TOKEN }}
