@@ -10,7 +10,6 @@ import (
 	"entgo.io/ent/dialect"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/handler/debug"
-	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi"
 	"github.com/rs/cors"
 	"github.com/tapestrylabs/users/api/config"
@@ -109,9 +108,9 @@ func main() {
 	})
 
 	// Graphql routes
-	if serverConfig.Environment == "local" {
-		router.Handle("/", playground.Handler("Users", "/graphql"))
-	}
+	// if serverConfig.Environment == "local" {
+	// 	router.Handle("/", playground.Handler("Users", "/graphql"))
+	// }
 	router.Handle("/graphql", server)
 
 	logger.Info("listening on", zap.String("address", serverConfig.PortString()))
