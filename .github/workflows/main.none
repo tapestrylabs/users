@@ -16,5 +16,3 @@
 #       - uses: dfalgout/test-fabric-gh@v0.1.11-test
 #         with:
 #           projectToken: ${{ secrets.PROJECT_TOKEN }}
-
-
